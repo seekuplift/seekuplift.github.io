@@ -9,6 +9,9 @@ GitHub Pages site for `seekuplift.com`.
   `Expires` before 2027-10-11.
 - `SECURITY.md` — human-readable security policy at `seekuplift.com/SECURITY.md`; keep its
   contact in step with `security.txt`.
+- `help-center-wiki/` — redirect pages from the wiki's old project path to `seekuplift.com/wiki/`
+  (the wiki repo was renamed `help-center-wiki` → `wiki` on 2026-10-27). Add one if a wiki page
+  that existed before the rename is ever missing here.
 - `.nojekyll` must stay, or Pages drops the `.well-known/` directory.
 - DNS is on Cloudflare (proxied). A Cloudflare Response Header Transform Rule sets
   `Content-Type: application/json` on `/.well-known/assetlinks.json`. Phantom's identity check
