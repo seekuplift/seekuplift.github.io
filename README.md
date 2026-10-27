@@ -7,6 +7,8 @@ GitHub Pages site for `seekuplift.com`.
   App Signing is added, append its fingerprint; never remove the dApp Store key's entry.
 - `.well-known/security.txt` — RFC 9116 security contact (`security@seekuplift.com`). Renew
   `Expires` before 2027-10-11.
+- `SECURITY.md` — human-readable security policy at `seekuplift.com/SECURITY.md`; keep its
+  contact in step with `security.txt`.
 - `.nojekyll` must stay, or Pages drops the `.well-known/` directory.
 - DNS is on Cloudflare (proxied). A Cloudflare Response Header Transform Rule sets
   `Content-Type: application/json` on `/.well-known/assetlinks.json`. Phantom's identity check
