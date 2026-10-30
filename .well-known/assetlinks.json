@@ -7,7 +7,8 @@
       "namespace": "android_app",
       "package_name": "com.seekuplift.app",
       "sha256_cert_fingerprints": [
-        "55:92:31:FF:E3:C8:34:56:D1:FA:CF:43:1C:CA:A9:7A:F5:2D:AA:FD:0F:39:3C:B0:C8:96:8C:2B:DF:46:AB:5E"
+        "55:92:31:FF:E3:C8:34:56:D1:FA:CF:43:1C:CA:A9:7A:F5:2D:AA:FD:0F:39:3C:B0:C8:96:8C:2B:DF:46:AB:5E",
+        "7D:5E:62:68:40:CB:46:87:08:9C:34:13:5A:86:36:9B:19:2C:5D:20:20:34:CF:4D:03:DD:D9:E4:ED:9F:4E:75"
       ]
     }
   },
