@@ -93,19 +93,14 @@
   .shot .phone { position: relative; width: 280px; transform: none; }
   .tag { display: inline-block; font-size: .75rem; font-weight: 500; padding: .2rem .65rem; border-radius: 99px; margin-bottom: 1rem; border: 1px solid; }
 
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: step; }
-  .step { padding: 28px; border-radius: 20px; border: 1px solid var(--line); background: var(--navy); }
-  .step::before { counter-increment: step; content: "0" counter(step); display: block; font-family: var(--display); font-weight: 700; font-size: 2rem; color: var(--teal); margin-bottom: .5rem; }
-  .step h3 { font-size: 1.15rem; margin-bottom: .4rem; }
-  .step p { margin: 0; color: var(--dim); font-size: .97rem; }
-
+  
   .band { border-radius: 28px; padding: 56px; background: radial-gradient(500px 300px at 85% 0%, rgba(192, 132, 252, .18), transparent 70%), linear-gradient(180deg, var(--card), var(--navy)); border: 1px solid var(--line); display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: center; }
   .band h2 { font-size: clamp(1.8rem, 3.4vw, 2.5rem); line-height: 1.1; margin-bottom: 1rem; }
   .band p { color: var(--dim); margin: 0; }
   .band code { font-size: .9rem; background: #070b16; border: 1px solid var(--line); border-radius: 10px; padding: .9rem 1rem; display: block; color: var(--mint); overflow-wrap: anywhere; }
 
   .final { text-align: center; }
-  .final h2 { font-size: clamp(2rem, 4.4vw, 3.2rem); line-height: 1.08; margin-bottom: 1rem; }
+  .final h2 { font-size: clamp(2rem, 4.4vw, 3.2rem); line-height: 1.08; margin-bottom: 2rem; }
   .final p { color: var(--dim); max-width: 34rem; margin: 0 auto 2rem; font-size: 1.1rem; }
   .final .ctas { justify-content: center; }
 
@@ -128,7 +123,6 @@
     .feature.flip .shot { order: 0; }
     .phones { height: 470px; }
     .phone { width: 210px; }
-    .steps { grid-template-columns: 1fr; }
     section { padding: 64px 0; }
   }
   @media (max-width: 520px) {
@@ -148,7 +142,6 @@
     <a class="brand" href="/"><img src="/assets/img/logo.svg" alt="" width="28" height="32">Seek Uplift</a>
     <nav>
       <a href="#why">Why</a>
-      <a href="#how">How it works</a>
       <a href="#agents">Agents</a>
       <a href="/wiki/">Help</a>
     </nav>
@@ -168,9 +161,12 @@
           <span class="btn soon">Web app<small>Coming soon</small></span>
         </div>
       </div>
-      <div class="phones" aria-hidden="true">
-        <div class="phone back"><img src="/assets/img/idea-coin.webp" alt="" width="620" height="1377"></div>
-        <div class="phone front"><img src="/assets/img/cause-coin.webp" alt="" width="620" height="1377"></div>
+      <div>
+        <div class="phones" aria-hidden="true">
+          <div class="phone back"><img src="/assets/img/idea-coin.webp" alt="" width="620" height="1377"></div>
+          <div class="phone front"><img src="/assets/img/cause-coin.webp" alt="" width="620" height="1377"></div>
+        </div>
+        <p class="note">Screens show illustrative example coins that do not exist. Not investment advice.</p>
       </div>
     </div>
   </div>
@@ -186,7 +182,7 @@
         <div class="card">
           <div class="dot" style="background:rgba(0,212,170,.12);color:var(--teal)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.6-9.5 9-9.5 9z"/></svg></div>
           <h3>Fees with a purpose</h3>
-          <p>Each coin backs a cause, an idea, or the Seek Uplift fund. A share of its fees flows there.</p>
+          <p>Each coin backs a cause or an idea. A share of its fees flows there.</p>
         </div>
         <div class="card">
           <div class="dot" style="background:rgba(192,132,252,.12);color:var(--violet)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></div>
@@ -200,8 +196,8 @@
         </div>
         <div class="card">
           <div class="dot" style="background:rgba(168,255,224,.10);color:var(--mint)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9 9.5h4.5a2 2 0 0 1 0 4H10a2 2 0 0 0 0 4h5"/></svg></div>
-          <h3>Built on SKR</h3>
-          <p>Coins trade against SKR, the Seeker's own coin. Creators earn SKR from trades.</p>
+          <h3>Paired with SKR</h3>
+          <p>Every coin is paired with SKR, the Seeker's own coin. Creators earn SKR from trades.</p>
         </div>
       </div>
     </div>
@@ -230,7 +226,6 @@
           <p>Launch something fun that still does good. Pick the cause your coin backs, and part of its fees supports it for as long as people trade.</p>
           <ul>
             <li>Back causes that no charity covers yet</li>
-            <li>Seek Uplift fund payouts are published with a reason</li>
           </ul>
         </div>
       </div>
@@ -240,30 +235,6 @@
           <span class="tag" style="color:var(--mint);border-color:rgba(168,255,224,.35)">Creators</span>
           <h3>Rewards in SKR, and in your own coin.</h3>
           <p>Creators earn a share of trading fees in SKR. Turn on a transfer fee and you also collect your share in your own coin. Claim it all from one screen.</p>
-        </div>
-      </div>
-      <p class="note">Screens show illustrative example coins that do not exist. Not investment advice.</p>
-    </div>
-  </section>
-
-  <section id="how">
-    <div class="wrap">
-      <div class="head">
-        <span class="eyebrow">How it works</span>
-        <h2>From idea to live coin in minutes.</h2>
-      </div>
-      <div class="steps">
-        <div class="step">
-          <h3>Choose what it backs</h3>
-          <p>An idea you want built, or a cause you care about.</p>
-        </div>
-        <div class="step">
-          <h3>Launch in a few steps</h3>
-          <p>Name, symbol, logo and where the fees go. Sign with your wallet.</p>
-        </div>
-        <div class="step">
-          <h3>Grow it together</h3>
-          <p>Follow live prices, charts and curve progress, and read callouts from the community.</p>
         </div>
       </div>
     </div>
@@ -288,9 +259,9 @@
   <section class="final">
     <div class="wrap">
       <h2>Ready to lift something?</h2>
-      <p>Get Seek Uplift on the Solana dApp Store and launch your first coin from your Seeker.</p>
       <div class="ctas">
         <a class="btn primary" href="solanadappstore://details?id=com.seekuplift.app">Get it on the Solana dApp Store<small>Opens on your Seeker</small></a>
+        <a class="btn" href="https://skill.seekuplift.com/skill.md">Agent skill<small>Let your AI agent launch and trade</small></a>
         <span class="btn soon">Web app<small>Coming soon</small></span>
       </div>
     </div>
