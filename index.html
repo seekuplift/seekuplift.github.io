@@ -283,16 +283,11 @@
 </footer>
 
 <script>
-// Cause marketing is restricted in some regions (backend geo rule `cause.marketing`).
-// The page ships without it; this adds it only once the backend confirms the
-// visitor's region allows it. Unknown region, error or timeout: nothing is added.
+// Cause marketing is restricted in some regions. The page ships without it;
+// /assets/cause.html is added on top, and a Cloudflare WAF rule refuses that
+// file to restricted and unknown countries. Refused, error or timeout: nothing is added.
 (async () => {
   try {
-    const r = await fetch("https://app-api.seekuplift.com/api/mobile-config", { cache: "no-store", signal: AbortSignal.timeout(5000) });
-    if (!r.ok) return;
-    const geo = (await r.json()).geo;
-    if (!geo || typeof geo.region !== "string" || !geo.region || !Array.isArray(geo.restricted)) return;
-    if (geo.restricted.some((k) => String(k).startsWith("cause."))) return;
     const f = await fetch("/assets/cause.html", { signal: AbortSignal.timeout(5000) });
     if (!f.ok) return;
     const t = document.createElement("template");
