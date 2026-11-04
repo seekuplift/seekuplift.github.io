@@ -158,7 +158,7 @@
       <div>
         <span class="eyebrow">A Solana launchpad for the Seeker</span>
         <h1>Trade coins that <em>lift something real.</em></h1>
-        <p class="lede">Every coin on Seek Uplift backs a cause or an idea. Part of its fees goes there with every trade, and idea funding is paid out as builders prove progress.</p>
+        <p class="lede">Idea coins on Seek Uplift fund a project worth building. Part of their fees goes there with every trade, and funding is paid out as builders prove progress.<span data-cause-slot="lede"></span></p>
         <div class="ctas">
           <a class="btn primary" href="solanadappstore://details?id=com.seekuplift.app">Get it on the Solana dApp Store<small>Opens on your Seeker</small></a>
           <a class="btn" href="https://skill.seekuplift.com/skill.md">Agent skill<small>Let your AI agent launch and trade</small></a>
@@ -167,8 +167,8 @@
       </div>
       <div>
         <div class="phones" aria-hidden="true">
-          <div class="phone back"><img src="/assets/img/idea-coin.webp" alt="" width="620" height="1377"></div>
-          <div class="phone front"><img src="/assets/img/cause-coin.webp" alt="" width="620" height="1377"></div>
+          <div class="phone back"><img src="/assets/img/rewards.webp" alt="" width="620" height="1377"></div>
+          <div class="phone front"><img src="/assets/img/idea-coin.webp" alt="" width="620" height="1377"></div>
         </div>
         <p class="note">Screens show illustrative example coins that do not exist. Not investment advice.</p>
       </div>
@@ -186,7 +186,7 @@
         <div class="card">
           <div class="dot" style="background:rgba(0,212,170,.12);color:var(--teal)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.6-9.5 9-9.5 9z"/></svg></div>
           <h3>Fees with a purpose</h3>
-          <p>Each coin backs a cause or an idea. A share of its fees flows there.</p>
+          <p>Each idea coin sends a share of its fees to the project it backs.<span data-cause-slot="card"></span></p>
         </div>
         <div class="card">
           <div class="dot" style="background:rgba(192,132,252,.12);color:var(--violet)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></div>
@@ -223,17 +223,6 @@
         </div>
       </div>
       <div class="feature flip">
-        <div class="shot"><div class="phone"><img src="/assets/img/launch-chooser.webp" alt="Choosing between an idea and a meme with impact when launching a coin" width="620" height="1377" loading="lazy"></div></div>
-        <div>
-          <span class="tag" style="color:var(--teal);border-color:rgba(0,212,170,.4)">Causes</span>
-          <h3>Memes with impact.</h3>
-          <p>Launch something fun that still does good. Pick the cause your coin backs, and part of its fees supports it for as long as people trade.</p>
-          <ul>
-            <li>Back causes that no charity covers yet</li>
-          </ul>
-        </div>
-      </div>
-      <div class="feature">
         <div class="shot"><div class="phone"><img src="/assets/img/rewards.webp" alt="Creator rewards screen with claimable SKR" width="620" height="1377" loading="lazy"></div></div>
         <div>
           <span class="tag" style="color:var(--mint);border-color:rgba(168,255,224,.35)">Creators</span>
@@ -241,6 +230,7 @@
           <p>Creators earn a share of trading fees in SKR. Turn on a transfer fee and you also collect your share in your own coin. Claim it all from one screen.</p>
         </div>
       </div>
+      <div data-cause-slot="feature" hidden></div>
     </div>
   </section>
 
@@ -292,5 +282,26 @@
   </div>
 </footer>
 
+<script>
+// Cause marketing is restricted in some regions (backend geo rule `cause.marketing`).
+// The page ships without it; this adds it only once the backend confirms the
+// visitor's region allows it. Unknown region, error or timeout: nothing is added.
+(async () => {
+  try {
+    const r = await fetch("https://app-api.seekuplift.com/api/mobile-config", { cache: "no-store", signal: AbortSignal.timeout(5000) });
+    if (!r.ok) return;
+    const geo = (await r.json()).geo;
+    if (!geo || typeof geo.region !== "string" || !geo.region || !Array.isArray(geo.restricted)) return;
+    if (geo.restricted.some((k) => String(k).startsWith("cause."))) return;
+    const f = await fetch("/assets/cause.html", { signal: AbortSignal.timeout(5000) });
+    if (!f.ok) return;
+    const t = document.createElement("template");
+    t.innerHTML = await f.text();
+    for (const el of [...t.content.querySelectorAll("[data-slot]")]) {
+      document.querySelector('[data-cause-slot="' + el.dataset.slot + '"]')?.replaceWith(el);
+    }
+  } catch {}
+})();
+</script>
 </body>
 </html>
